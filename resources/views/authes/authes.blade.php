@@ -95,7 +95,10 @@
               {{ session('captchaes') }}
             </div>
           @endif
-          <button type="button" class="btn-ver" onclick="verifyCaptcha()">
+          
+          @if(session('captchaesss') && session('form') === 'captcha')
+            <button type="button" class="btn-ver" onclick="verifyCaptcha()">
+          @endif
             <span id="captcha-not-verified" style="display: inline;">🔒 Verifikasi Captcha</span>
             <span id="captcha-verified" style="display: none;">✅ Captcha Terverifikasi</span>
           </button>
