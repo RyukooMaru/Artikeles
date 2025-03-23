@@ -1,0 +1,48 @@
+Algoritma program captcha Kelompok 7
+1. Memulai program
+2. membuat display dari dp1(nama="Captcha Matching 2 image!", size=800x400, icon="favicon.ico")
+3. image_files1 akan mengambil file pada folder gambar 1
+4. image_files2 akan mengambil file pada folder gambar 2
+5. random_rotation1 akan memilih angka antara 45, 90, 135, 180, 225, 270, 315, atau 360 secara acak
+6. menampilkan dp1_lb1 di dp1 pada posisi(side="top", pady=20)
+7. menampilkan lbl_img1 di dp1 pada posisi(x=45, y=50)
+8. menampilkan lbl_img2 di dp1 pada posisi(x=350, y=50)
+9. start_time akan memulai waktu
+10. current_rotation_img1 mengambil random_rotation1
+11. random_img1 akan mengambil file pada folder gambar 1
+12. pil_img1 akan membuka foto dari random_img1
+13. rotated_img1 akan mengubah rotasi pil_img1 ke current_rotation_img1
+14. menampilkan lbl_img1_widget di dp 1 pada posisi(x=25, y=70)
+15. random_rotation2 akan memilih angka antara 45, 90, 135, 180, 225, 270, 315, atau 360 secara acak
+16. jika random_rotation tidak sama dengan current_rotation_img1 akan melanjutkan langkah 17, 
+    jika random_rotation2 sama dengan current_rotation_img1 kondisi akan mengulang ke langkah 15
+17. current_rotation_img2 mengambil random_rotation2
+18. random_img2 akan mengambil foto pada folder gambar 2
+19. pil_img2 akan mengambil foto dari random_img2
+20. rotated_img2 akan mengubah rotasi pil_img2 ke current_rotation_img2
+21. jika lbl_img2_widget sudah ada ubah lbl_img2_widget dengan yang baru lalu lanjut ke langkah 23, 
+    jika lbl_img2_widget tidak ada maka akan melanjutkan langkah 22
+22. menampilkan lbl_img2_widget di dp1 pada posisi(x=310, y=70)
+23. menampilkan btn_im2_kiri di dp1 pada posisi(x=25, y=230)
+24. menampilkan btn_im2_kanan di dp1 pada posisi(x=560, y=230)
+25. menampilkan btn_check_rotation di dp1 pada posisi(x=250, y=300)
+26. menampilkan lbl_tm di dp1 pada posisi(x=25, y=25) dan ambil isi dari remaining_time
+27. remaining_time menghitung mundur start_time dari 16 sampai 0
+28. jika remaining_time adalah 0 "Gambar Ulang" menampilkan pesan "Waktu Habis! Silahkan coba lagi", acak rotasi gambar 1, dan ubah gambar 2 serta acak rotasinya lalu lanjut langkah 27
+    jika remaining_tima bukan 0 lanjut langkah 29
+29. jika btn_im2_kiri ditekan maka ubah rotasi gambar 2 (45 derajat)ke kiri lalu lanjut langkah 30, 
+    jika tidak lanjut langkah 30
+30. jika btn_im2_kanan ditekan maka ubah rotasi gambar 2 (45 derajat) ke kanan lalu lanjut langkah 31, 
+    jika tidak lanjut langkah 31
+31. jika btn_check_rotation ditekan maka lanjut langkah 32, 
+    jika tidak maka akan lanjut langkah 27
+32. menampilkan label penutupan pada posisi(x=155, y=60)
+33. lbl_tm yabg mengambil isi dari remaining_time berubah menjadi 84000 sampai 0
+34. jika rotasi gambar 1 dan gambar 2 adalah sama maka completion_time mengambil waktu sekarang dan lanjut langkah 35,
+    jika tidak maka "Pencocokan" menampilkan pesan "Rotasi tidak sesuai! Silahkan coba lagi." lalu lanjut langkah 36
+35. tampilkan messagebox.showinfo "Pencocokan" menampilkan pesan "Rotasi sesuai! Anda berhasil!\n \n Waktu Penyelesaian: {int(completion_time)} detik" lalu dp1 keluar
+36. acak rotasi gambar 1
+37. ubah gambar 2
+38. remaining_time menghitung mundur start_time dari 16 sampai 0 seperti sebelumnya
+39. hilangkan label penutupan
+40. acak rotasinya lalu lanjut langkah 27

@@ -1,0 +1,309 @@
+:root {
+    --oclr: #fba52b;
+    --ftclr: black;
+}
+html, body {
+    margin: 0;
+    padding: 0;
+    height: 100%;
+    width: 100%;
+}
+body.timess {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+    justify-content: flex-start;
+    background: linear-gradient(#3D5688, #5373A1, #9DA3B7, #CBB6B0, #F9D69E, #F6BD73);
+    background-attachment: fixed;
+    background-size: cover;
+    background-repeat: no-repeat;
+    font-family: Arial, sans-serif;
+    overflow-x: hidden;
+}
+.hidden {
+    display: none;
+}
+.cardbg {
+    display: flex;
+    justify-content: center;
+    align-items: stretch;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(100, 100, 100, 0.1);
+    border-radius: 10px;
+    overflow: hidden;
+    position: relative;
+}
+.locard h2 {
+    margin-bottom: 1.5em;
+    font-size: 1.8rem;
+}
+.input-group {
+    margin-bottom: 1em;
+    text-align: left;
+}
+.input-group label {
+    display: block;
+    margin-bottom: 0.2em;
+    font-size: 0.9rem;
+    color: #ddd;
+}
+.input-group input {
+    width: 100%;
+    padding: 0.7em;
+    border: none;
+    border-radius: 4px;
+    outline: none;
+    background: white;
+    color: black;
+    transition: background 0.3s;
+    box-sizing: border-box;
+}
+.input-group input:focus {
+    background: #FAF1E6;
+}
+.btn-login {
+    width: 100%;
+    padding: 0.8em;
+    background: #ffa700;
+    border: none;
+    border-radius: 5px;
+    color: #333;
+    font-weight: bold;
+    cursor: pointer;
+    transition: background 0.3s;
+}
+.btn-ver {
+    width: 100%;
+    padding: 0.8em;
+    background: #ffa700;
+    border: none;
+    border-radius: 5px;
+    margin-bottom: 10px;
+    color: #333;
+    font-weight: bold;
+    cursor: pointer;
+    transition: background 0.3s;
+}
+.btn-login:hover {
+    background: #ff8100;
+}
+.--link {
+    margin-top: 1em;
+    font-size: 0.9rem;
+}
+.--link a {
+    color: #ffa700;
+    text-decoration: none;
+}
+.locardes {
+    width: 850px;
+    height: 515px;
+    max-width: 100%;
+    background: rgba(100, 100, 100, 1);
+    text-align: center;
+    border-radius: 8px;
+    color: #fff;
+    position: relative;
+    outline: 1px solid var(--oclr);
+    box-sizing: border-box;
+    transition: all 0.3s ease;
+    margin: auto;
+}
+@property --angle {
+    syntax: "<angle>";
+    initial-value: 0deg;
+    inherits: false;
+}
+.locardes::before,
+.locardes::after {
+    content: "";
+    position: absolute;
+    height: 102%;
+    width: 101%;
+    background-image: conic-gradient(from var(--angle), var(--gradient-colors, #ff6700, #ff8100, #ffa700, #ff4d00));
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    border-radius: 10px;
+    z-index: -1;
+    pointer-events: none;
+    transition: background-image 1s ease;
+    animation: spin 1s linear infinite;
+}
+.cardbg::before {
+    opacity: 0.7;
+    filter: blur(15px);
+}
+.cardbg::after {
+    opacity: 0.5;
+    filter: blur(25px);
+}
+@keyframes spin {
+    from {
+        --angle: 0deg;
+    }
+    to {
+        --angle: 360deg;
+    }
+}
+.feedback {
+    margin-bottom: 1em;
+    padding: 0.8em;
+    border-radius: 5px;
+    font-size: 0.9rem;
+    text-align: center;
+}
+.feedback.error {
+    background-color: #f8d7da;
+    color: #721c24;
+    padding: 10px;
+    margin-bottom: 10px;
+    border-radius: 5px;
+}
+.feedback.success {
+    background-color: #f8d7da;
+    color: #721c24;
+    padding: 10px;
+    margin-bottom: 10px;
+    border-radius: 5px;
+}
+.footeresauth {
+    color: var(--ftclr);
+    text-align: center;
+    padding: 0.1rem;
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    margin: 0 auto;
+}
+.locard-left {
+    flex: 1;
+    background-color: #333;
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.locard-left img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+.locard-right {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 1rem;
+    background-color: rgba(100, 100, 100, 1);
+    color: #fff;
+    box-sizing: border-box;
+    height: 90%;
+}
+.locard-right h2 {
+    margin-top: 90px;
+    font-size: 2rem;
+    text-align: center;
+    width: 100%;
+}
+.locard-right .registertxt {
+    margin-top: 90px;
+    margin-bottom: 1px;
+    font-size: 2rem;
+    text-align: center;
+    width: 100%;
+}
+.login-card {
+    width: 100%;
+}
+@media (max-width: 768px) {
+    body.timess {
+        background: linear-gradient(#3D5688, #5373A1, #9DA3B7, #CBB6B0, #F9D69E, #F6BD73);
+        background-size: 100% 100%;
+        background-attachment: fixed;
+    }
+    .cardbg {
+        flex-direction: column;
+        min-height: 100%;
+    }
+    .locard-left {
+        display: none;
+    }
+    .locard-right {
+        padding: 1rem;
+    }
+    .locard-right h2 {
+        font-size: 1rem;
+    }
+    .btn-login {
+        font-size: 1rem;
+    }
+    .footeresauth {
+        position: static;
+        margin-top: auto;
+        padding: 1rem 0;
+        text-align: center;
+        background-color: rgba(255, 255, 255, 0.1);
+    }
+}  
+@media (max-width: 480px) {
+    .locard-right {
+        padding: 1rem;
+    }
+    .btn-login {
+        padding: 0.6em;
+    }
+}
+/* BACKDROP hitam transparan */
+.locardesmini {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5); /* semi transparan */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 9999; /* supaya di atas semua */
+}
+
+/* KARTU PUTIH di tengah */
+.locardesmini .login-card {
+    position: relative;
+    background-color: white;
+    padding: 30px 20px;
+    border-radius: 25px;
+    width: 400px;
+    text-align: center;
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+    animation: fadeIn 0.3s ease-in-out;
+}
+
+/* Tombol X di pojok atas kanan */
+.locardesmini .close-btn {
+    position: absolute;
+    top: 20px;
+    right: 15px;
+    background: #eee;
+    border: none;
+    font-size: 18px;
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.locardesmini .close-btn:hover {
+    background-color: #ddd;
+}
+
+/* Animasi fade in */
+@keyframes fadeIn {
+    from { opacity: 0; transform: scale(0.95); }
+    to { opacity: 1; transform: scale(1); }
+}
