@@ -1,4 +1,5 @@
-@extends('layouts.app') <!-- Optional: kalau ada layout -->
+@extends('layouts.app')
+
 @section('content')
 
 <div class="container d-flex justify-content-center align-items-center" style="height: 100vh;">
@@ -9,10 +10,12 @@
       <strong>Putar gambar 2 agar arahnya sama seperti gambar 1!</strong>
     </div>
 
+    {{-- Pesan sukses --}}
     @if(session('success'))
       <div class="alert alert-success">{{ session('success') }}</div>
     @endif
 
+    {{-- Pesan error --}}
     @if(session('error'))
       <div class="alert alert-danger">{{ session('error') }}</div>
     @endif
@@ -21,13 +24,13 @@
       <!-- Gambar 1 -->
       <div class="col-6">
         <p>Gambar 1</p>
-        <img id="gambar1" src="{{ asset('Captcha/gambar 1/' . $gambar1) }}" style="width: 100px; transform: rotate({{ $rotasiGambar1 }}deg); transition: transform 0.5s;">
+        <img id="gambar1" src="{{ $gambar1_url }}" alt="Gambar 1" style="width: 100px; transform: rotate({{ $rotasiGambar1 }}deg); transition: transform 0.5s;">
       </div>
 
       <!-- Gambar 2 -->
       <div class="col-6">
         <p>Gambar 2</p>
-        <img id="gambar2" src="{{ asset('Captcha/gambar 2/' . $gambar2) }}" style="width: 100px; transition: transform 0.5s;">
+        <img id="gambar2" src="{{ $gambar2_url }}" alt="Gambar 2" style="width: 100px; transition: transform 0.5s;">
       </div>
     </div>
 
