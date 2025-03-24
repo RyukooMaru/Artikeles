@@ -143,17 +143,6 @@ def check_rotation_match():
             completion_time = time.time() - start_time
             completion_times.append(completion_time)
             messagebox.showinfo("Pencocokan", f"Rotasi sesuai! Anda berhasil!\n \n Waktu Penyelesaian: {int(completion_time)} detik")
-            cursor = koneksi.cursor()
-            sql = "UPDATE users SET captcha_verified = %s WHERE id = %s"
-            val = (True, 'userid1')
-            cursor1 = koneksi.cursor()
-            sql1 = "INSERT INTO user (kolom1, kolom2, kolom3, kolom4, kolom5) values (%s, %s, %s ,%s, %s)"
-            val1 = ('','username', 'nameuse', 'hashpw' , 'defaultImage')
-            cursor.execute(sql, val)
-            cursor1.execute(sql1, val1)
-            koneksi.commit()
-            cursor1.close()
-            cursor.close()
             dp1.quit()
         else:
             messagebox.showinfo("Pencocokan", "Rotasi tidak sesuai! Silakan coba lagi.")
@@ -167,17 +156,6 @@ def check_rotation_match():
             completion_time = time.time() - start_time
             completion_times.append(completion_time)
             messagebox.showinfo("Pencocokan", f"Rotasi sesuai! Anda berhasil!\n \n Waktu Penyelesaian: {int(completion_time)} detik")
-            cursor = koneksi.cursor()
-            sql = "UPDATE users SET captcha_verified = %s WHERE id = %s"
-            val = (True, 'userid1')
-            cursor1 = koneksi.cursor()
-            sql1 = "INSERT INTO user (kolom1, kolom2, kolom3, kolom4, kolom5) values (%s, %s, %s ,%s, %s)"
-            val1 = ('','username', 'nameuse', 'hashpw' , 'defaultImage')
-            cursor.execute(sql, val)
-            cursor1.execute(sql1, val1)
-            koneksi.commit()
-            cursor1.close()
-            cursor.close()
             dp1.quit()
         else:
             messagebox.showinfo("Pencocokan", "Rotasi tidak sesuai! Silakan coba lagi.")

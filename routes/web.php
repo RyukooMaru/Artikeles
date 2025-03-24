@@ -4,6 +4,8 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\BuatesController;
 use App\Http\Controllers\HistorysearchController;
+use Illuminate\Http\Request;
+use App\Http\Controllers\CaptchaController;
 
 // Akses halaman utama
 Route::get('/', function () {
@@ -24,3 +26,6 @@ Route::get('/searches', [HistorysearchController::class, 'index'])->name('appes.
 Route::post('/searches', [HistorysearchController::class, 'Search'])->name('histories');
 Route::get('/buates', [BuatesController::class, 'buat'])->name('appes.buates');
 Route::post('/buates/simpan', [BuatesController::class, 'simpan'])->name('appes.buates.simpan');
+Route::post('/tambah-requestes', [AuthController::class, 'requestes'])->name('tambah.requestes');
+Route::get('/captcha', [CaptchaController::class, 'show'])->name('captcha.show');
+Route::post('/captcha/check', [CaptchaController::class, 'check'])->name('captcha.check');

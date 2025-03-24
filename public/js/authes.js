@@ -38,26 +38,30 @@ document.addEventListener('DOMContentLoaded', () => {
   if (formToShow === 'register') {
     loginForm.classList.add('hidden');
     registerForm.classList.remove('hidden');
-  } else if (formToShow =='captcha') {
+  } else if (formToShow === 'captcha') {
     loginForm.classList.add('hidden');
     registerForm.classList.remove('hidden');
     captchaForm.classList.remove('hidden');
-  }else {
+  } else {
     registerForm.classList.add('hidden');
     loginForm.classList.remove('hidden');
   }
 
   window.toggleForm = function (formType) {
-    clearFeedback();
+    clearFeedback(); // Kosongin notifikasi
+    const tambahRequest = "{{ route('appes.artikeles') }}";
     if (formType === 'register') {
       loginForm.classList.add('hidden');
       registerForm.classList.remove('hidden');
+      tambahRequest();
     } else {
       registerForm.classList.add('hidden');
       loginForm.classList.remove('hidden');
     }
   };
+  
 });
+
 
 setInterval(updateBackgroundByTime, 60 * 60 * 1000);
 
@@ -68,3 +72,4 @@ function closeCard() {
     locardesmini.style.display = 'none';
   }
 }
+

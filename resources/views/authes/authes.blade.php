@@ -23,7 +23,6 @@
 
         <form method="POST" action="{{ route('login.action') }}">
           @csrf
-
           <div class="input-group">
             <label for="username-login">Username</label>
             <input type="text" id="username-login" name="username" placeholder="Masukkan username" required>
@@ -93,23 +92,16 @@
           @if(session('captchaes') && session('form') === 'captcha')
             <div class="feedback error">
               {{ session('captchaes') }}
+              @include('authes.captcha')
             </div>
           @endif
-          
-          @if(session('captchaesss') && session('form') === 'captcha')
-            <button type="button" class="btn-ver" onclick="verifyCaptcha()">
-          @endif
-            <span id="captcha-not-verified" style="display: inline;">🔒 Verifikasi Captcha</span>
-            <span id="captcha-verified" style="display: none;">✅ Captcha Terverifikasi</span>
-          </button>
+          <div class="input-group">
           <button type="submit" class="btn-login">Buat Akun</button>
-        </form>
-            <p class="--link">  
+          </div>
+          <p class="--link">  
               Sudah punya akun?
               <a href="#" onclick="toggleForm('login')">Login</a>
             </p>
-          </div>
-          
         </div>
         </div>
       </div>
