@@ -65,7 +65,7 @@ document.addEventListener('DOMContentLoaded', () => {
       captchaForm?.classList.add('hidden');
     } else if (formType === 'captcha') {
       loginForm?.classList.add('hidden');
-      registerForm?.classList.add('hidden');
+      registerForm?.classList.remove('hidden');
       captchaForm?.classList.remove('hidden');
     } else if (formType === 'registerulang') {
       loginForm?.classList.add('hidden');

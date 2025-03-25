@@ -24,6 +24,12 @@
             </div>
           @endif  
 
+          @if(session('message'))
+            <div class="feedback error">
+              <p>{{ session('message') }}</p>
+            </div>
+          @endif
+
           <button type="submit" class="btn-login">Login</button>
         </form>
 

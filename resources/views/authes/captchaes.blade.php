@@ -1,26 +1,54 @@
 <div id="captcha-form" class="login-card hidden">
-  <h2>CAPTCHA</h2>
-  <form method="POST" action="{{ route('captcha.action') }}">
-    @csrf
-    <!-- Tambah elemen CAPTCHA di sini -->
-    <div class="captcha-img">
-      <img src="{{ asset('captcha-image.jpg') }}" alt="Captcha Image">
-    </div>
-    <div class="input-group">
-      <label for="captcha">Masukkan kode</label>
-      <input type="text" name="captcha" id="captcha" required>
-    </div>
+  <h3>CAPTCHA Verification</h3>
 
-    <!-- Pesan flash error/success -->
-    @if(session('captchaes'))
-      <div class="feedback error">
-        {{ session('captchaes') }}
+  @if(session('error'))
+      <p style="color: red;">{{ session('error') }}</p>
+  @endif
+
+  @if(session('success'))
+      <p style="color: green;">{{ session('success') }}</p>
+  @endif
+
+  @php
+      $captcha = session('captcha');
+  @endphp
+
+  @if($captcha)
+      <div style="display: flex; justify-content: space-between; align-items: center;">
+          <!-- Gambar 1 -->
+          <div>
+              <p>Gambar 1 (Patokan)</p>
+              <img src="{{ asset('captcha/gambar1/' . $captcha['image1']) }}" 
+                  style="width: 100px; transform: rotate({{ $captcha['rotation1'] }}deg);">
+          </div>
+
+          <!-- Gambar 2 (User bisa ubah rotasinya) -->
+          <div>
+              <p>Gambar 2</p>
+              <img src="{{ asset('captcha/gambar2/' . $captcha['image2']) }}" 
+                  style="width: 100px; transform: rotate({{ $captcha['rotation2'] }}deg);">
+          </div>
       </div>
-    @endif
-    <button type="submit" class="btn-login">Verifikasi</button>
-  </form>
 
-  <p class="--link">
-    Gagal verifikasi? <a href="#" onclick="toggleForm('register')">Kembali ke register</a>
-  </p>
+      <!-- Tombol Rotate -->
+      <form method="POST" action="{{ route('captcha.rotate') }}">
+          @csrf
+          <button type="submit">Putar Gambar 2</button>
+      </form>
+
+      <!-- Tombol Cek CAPTCHA -->
+      <form method="POST" action="{{ route('captcha.validate') }}">
+          @csrf
+          <button type="submit">Cek Pencocokan</button>
+      </form>
+  @else
+      <form method="GET" action="{{ route('captcha.generate') }}">
+          <button type="submit">Generate CAPTCHA</button>
+      </form>
+  @endif
+
+  <form method="POST" action="{{ route('hapus.request') }}">
+    @csrf
+    <button type="submit" class="close-btn">X</button>
+  </form>
 </div>

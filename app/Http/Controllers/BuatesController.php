@@ -6,7 +6,6 @@ use Illuminate\Http\Request;
 use App\Models\Buates;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Str;
-use Carbon\Carbon;
 
 class BuatesController extends Controller
 {

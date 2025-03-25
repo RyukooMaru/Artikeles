@@ -13,8 +13,7 @@
             <span class="close-alert" onclick="this.parentElement.style.display='none';">&times;</span>
         </div>
     </div>
-@endif
-
+  @endif
   @include('partses.navbares')
   <div class="main-content">
     @yield('content')

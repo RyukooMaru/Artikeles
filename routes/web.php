@@ -24,6 +24,8 @@ Route::get('/searches', [HistorysearchController::class, 'index'])->name('appes.
 Route::post('/searches', [HistorysearchController::class, 'Search'])->name('histories');
 Route::get('/buates', [BuatesController::class, 'buat'])->name('appes.buates');
 Route::post('/buates/simpan', [BuatesController::class, 'simpan'])->name('appes.buates.simpan');
-Route::post('/tambah-requestes', [AuthController::class, 'requestes'])->name('tambah.requestes');
-Route::get('/captcha', [CaptchaController::class, 'show'])->name('captcha.show');
-Route::post('/captcha/check', [CaptchaController::class, 'check'])->name('captcha.check');
+Route::post('/captcha/verify', [CaptchaController::class, 'verify'])->name('captcha.action');
+Route::post('/hapus-request', [CaptchaController::class, 'hapus'])->name('hapus.request');
+Route::get('/captcha', [CaptchaController::class, 'generateCaptcha'])->name('captcha.generate');
+Route::post('/captcha/rotate', [CaptchaController::class, 'rotateCaptcha'])->name('captcha.rotate');
+Route::post('/captcha/validate', [CaptchaController::class, 'validateCaptcha'])->name('captcha.validate');
