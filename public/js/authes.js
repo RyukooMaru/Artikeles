@@ -36,35 +36,50 @@ document.addEventListener('DOMContentLoaded', () => {
   const formToShow = document.body.getAttribute('data-show-form');
 
   if (formToShow === 'register') {
-    loginForm.classList.add('hidden');
-    registerForm.classList.remove('hidden');
+    loginForm?.classList.add('hidden');
+    registerForm?.classList.remove('hidden');
+    captchaForm?.classList.add('hidden');
   } else if (formToShow === 'captcha') {
-    loginForm.classList.add('hidden');
-    registerForm.classList.remove('hidden');
-    captchaForm.classList.remove('hidden');
+    loginForm?.classList.add('hidden');
+    registerForm?.classList.add('hidden');
+    captchaForm?.classList.remove('hidden');
   } else {
-    registerForm.classList.add('hidden');
-    loginForm.classList.remove('hidden');
+    registerForm?.classList.add('hidden');
+    loginForm?.classList.remove('hidden');
+    captchaForm?.classList.add('hidden');
   }
 
   window.toggleForm = function (formType) {
-    clearFeedback(); // Kosongin notifikasi
-    const tambahRequest = "{{ route('appes.artikeles') }}";
+    clearFeedback();
+    var activeForm = "{{ session('form') }}"; // Ambil dari session
+
+    if (activeForm === 'register') {
+        toggleForm('register');
+    } else if (activeForm === 'captcha') {
+        toggleForm('captcha');
+    }
+
     if (formType === 'register') {
-      loginForm.classList.add('hidden');
-      registerForm.classList.remove('hidden');
-      tambahRequest();
+      loginForm?.classList.add('hidden');
+      registerForm?.classList.remove('hidden');
+      captchaForm?.classList.add('hidden');
+    } else if (formType === 'captcha') {
+      loginForm?.classList.add('hidden');
+      registerForm?.classList.add('hidden');
+      captchaForm?.classList.remove('hidden');
+    } else if (formType === 'registerulang') {
+      loginForm?.classList.add('hidden');
+      registerForm?.classList.add('hidden');
+      captchaForm?.classList.remove('hidden');
     } else {
-      registerForm.classList.add('hidden');
-      loginForm.classList.remove('hidden');
+      registerForm?.classList.add('hidden');
+      loginForm?.classList.remove('hidden');
+      captchaForm?.classList.add('hidden');
     }
   };
-  
 });
 
-
 setInterval(updateBackgroundByTime, 60 * 60 * 1000);
-
 
 function closeCard() {
   const locardesmini = document.getElementById('locardesmini');
@@ -72,4 +87,3 @@ function closeCard() {
     locardesmini.style.display = 'none';
   }
 }
-

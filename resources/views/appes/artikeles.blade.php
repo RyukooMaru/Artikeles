@@ -6,7 +6,6 @@
   <link rel="stylesheet" href="{{ asset('css/appes.css') }}">
 </head>
 <body>
-  <!-- Alert Card (di luar navbar, setelah search bar) -->
   @if(session('searcherror'))
     <div class="alert-container">
         <div class="alert-card">

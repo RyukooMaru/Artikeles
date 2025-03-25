@@ -101,14 +101,7 @@
       font-size: 18px;
       color: #d9534f;
   }
-    
-  @media (max-width: 767px) {
-      .main-content {
-        margin-left: 0;
-        margin-bottom: 60px;
-        padding-top: 80px;
-      }
-  }
+
   @media (max-width: 767px) {
       .sidebar {
         display: flex;
@@ -150,6 +143,78 @@
       .sidebar .nav-item span {
         display: none;
       }
+       /* Top Navbar Responsif */
+  .top-navbar {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 10px;
+    width: 100%;
+  }
+
+  .left-section {
+    width: 100%;
+    text-align: left;
+    margin-top: -95px;
+  }
+
+  .site-title {
+    font-size: 18px;
+    font-weight: bold;
+  }
+
+  /* Search Wrapper */
+  .search-wrapper {
+    width: 100%;
+    display: flex;
+    left: -35px;
+    justify-content: center;
+    position: relative; /* Tambahkan */
+    top: -45px; /* Gantikan margin-top */
+  }
+
+  .search-form {
+    width: 90%;
+    display: flex;
+    align-items: center;
+    background: white;
+    border-radius: 25px;
+    border: 1px solid #ccc;
+    padding: 5px;
+  }
+
+  #search-input {
+    flex-grow: 1;
+    border: none;
+    outline: none;
+    padding: 8px;
+    font-size: 14px;
+  }
+
+  #clear-btn {
+    background: none;
+    border: none;
+    font-size: 18px;
+    cursor: pointer;
+    padding: 5px;
+    color: #666;
+    margin-left: -40px;
+  }
+
+  /* Right Section (Profile Image / Login Button) */
+  .right-section {
+    width: 100%;
+    display: flex;
+    justify-content: right;
+    margin-top: -210px;
+    margin-right: 50px;
+  }
+
+  .profile-img {
+    width: 35px;
+    height: 35px;
+    border-radius: 50%;
+  }
       
   }
   .search-wrapper {

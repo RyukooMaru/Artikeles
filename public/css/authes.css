@@ -281,10 +281,22 @@ body.timess {
     text-align: center;
     box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
     animation: fadeIn 0.3s ease-in-out;
+    z-index: 10;
+}
+
+#captcha-form {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background: black;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
 }
 
 /* Tombol X di pojok atas kanan */
-.locardesmini .close-btn {
+.close-btn {
     position: absolute;
     top: 20px;
     right: 15px;

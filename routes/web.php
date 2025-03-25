@@ -7,7 +7,6 @@ use App\Http\Controllers\HistorysearchController;
 use Illuminate\Http\Request;
 use App\Http\Controllers\CaptchaController;
 
-// Akses halaman utama
 Route::get('/', function () {
     if (!session('isLoggedIn')) {
         return redirect()->route('authes');
@@ -15,7 +14,6 @@ Route::get('/', function () {
     return view('appes.artikeles');
 });
 
-// AUTH ROUTES (gabung login & register jadi satu)
 Route::get('/authes', [AuthController::class, 'showAuthPage'])->name('authes'); 
 Route::post('/login', [AuthController::class, 'login'])->name('login.action');
 Route::post('/register', [AuthController::class, 'register'])->name('register.action');
