@@ -41,7 +41,7 @@ document.addEventListener('DOMContentLoaded', () => {
     captchaForm?.classList.add('hidden');
   } else if (formToShow === 'captcha') {
     loginForm?.classList.add('hidden');
-    registerForm?.classList.add('hidden');
+    registerForm?.classList.remove('hidden');
     captchaForm?.classList.remove('hidden');
   } else {
     registerForm?.classList.add('hidden');
@@ -87,3 +87,15 @@ function closeCard() {
     locardesmini.style.display = 'none';
   }
 }
+
+document.addEventListener("DOMContentLoaded", function() {
+  let gifElement = document.getElementById("gifImage");
+  let gifDuration = 7480;
+
+  setTimeout(function() {
+    gifElement.style.display = 'none'; // Sembunyikan sebelum ganti gambar
+    gifElement.src = iconPath;
+    gifElement.style.display = 'block'; // Tampilkan langsung tanpa transisi
+}, gifDuration);
+
+});

@@ -4,56 +4,38 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Buates;
-use Illuminate\Support\Facades\Validator;
-use Illuminate\Support\Str;
 
 class BuatesController extends Controller
 {
-    // Menampilkan halaman buat artikel
-    public function buat()
+    public function index()
     {
-        if (!session('isLoggedIn')) {
-            return redirect()->route('authes');
-        }
-
-        return view('appes.buates'); // Halaman form buat artikel
+        $documents = Buates::all();
+        return view('documents.index', compact('documents'));
     }
 
-    // Simpan artikel baru
-    public function simpan(Request $request)
+    public function create()
     {
-        if (!session('isLoggedIn')) {
-            return redirect()->route('authes');
-        }
+        return view('documents.create');
+    }
 
-        // Validasi inputan form
-        $validator = Validator::make($request->all(), [
-            'judul'  => 'required|string|max:255',
-            'konten' => 'required|string'
+    public function store(Request $request)
+    {
+        $request->validate([
+            'title' => 'required',
+            'content' => 'required',
         ]);
 
-        if ($validator->fails()) {
-            return redirect()->back()->withErrors($validator)->withInput();
-        }
-
-        // Generate SEO-friendly strings
-        $judul = $request->judul;
-        $konten = $request->konten;
-
-        $lseo = Str::slug($judul);         // Buat slug judul, contoh: "Belajar Laravel" => "belajar-laravel"
-        $kseo = Str::words(strip_tags($konten), 20, '...'); // Ambil 20 kata pertama dari konten (buat SEO)
-
-        // Buat artikel baru
         Buates::create([
-            'userid'  => session('id'), // ambil user id dari session
-            'judul'   => $judul,
-            'lseo'    => $lseo,
-            'kseo'    => $kseo,
-            'konten'  => $konten,
-            'deltime' => null, // default null (jika nanti mau soft-delete)
-            'delmode' => 0,    // default aktif
+            'title' => $request->title,
+            'content' => $request->content,
         ]);
 
-        return redirect()->route('appes.artikeles')->with('success', 'Artikel berhasil dibuat!');
+        return redirect()->route('documents.index');
+    }
+
+    public function show($id)
+    {
+        $document = Buates::find($id);
+        return view('documents.show', compact('document'));
     }
 }

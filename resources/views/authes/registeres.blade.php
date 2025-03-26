@@ -33,6 +33,17 @@
               {{ session('success') }}
             </div>
           @endif          
+          @if(session('captchaes') && session('form') === 'captcha')
+            <div class="feedback error">
+              {{ session('captchaes') }}
+            </div>
+          @endif          
+
+          @if(session('message'))
+            <div class="feedback error">
+              {{ session('message') }}
+            </div>
+          @endif
           <div class="input-group">
           <button type="submit" class="btn-login">Buat Akun</button>
           </div>

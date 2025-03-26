@@ -186,11 +186,13 @@ body.timess {
     justify-content: center;
     align-items: center;
 }
-.locard-left img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
+.locard-left video {
+    width: 100%; /* Menyesuaikan lebar parent */
+    height: auto; /* Menyesuaikan aspek rasio */
+    object-fit: cover; /* Menyesuaikan agar video memenuhi elemen */
+    border-radius: 10px; /* Opsional: Untuk tampilan lebih rapi */
 }
+
 .locard-right {
     flex: 1;
     display: flex;
@@ -218,6 +220,10 @@ body.timess {
 }
 .login-card {
     width: 100%;
+}
+.gifet {
+    width: 100%;
+    will-change: opacity;
 }
 @media (max-width: 768px) {
     body.timess {
@@ -249,14 +255,6 @@ body.timess {
         background-color: rgba(255, 255, 255, 0.1);
     }
 }  
-@media (max-width: 480px) {
-    .locard-right {
-        padding: 1rem;
-    }
-    .btn-login {
-        padding: 0.6em;
-    }
-}
 /* BACKDROP hitam transparan */
 .locardesmini {
     position: fixed;

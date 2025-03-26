@@ -22,7 +22,7 @@ class CaptchaController extends Controller
 
         if ($deleted) {
             session()->flush(); // Hapus semua session
-            return redirect(url('/authes'))->with('message', 'Gagal registrasi, coba lagi!.');
+            return redirect(url('/authes'))->with('message', 'Gagal registrasi, coba lagi!.')->with('form', 'register');
         }
     }
 

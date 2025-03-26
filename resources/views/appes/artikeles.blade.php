@@ -4,6 +4,7 @@
   <meta charset="UTF-8">
   <title>Artikeles</title>
   <link rel="stylesheet" href="{{ asset('css/appes.css') }}">
+  <link rel="icon" href="{{ asset('favicon.ico') }}">
 </head>
 <body>
   @if(session('searcherror'))
