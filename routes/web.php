@@ -25,6 +25,7 @@ Route::get('/buates', [BuatesController::class, 'buat'])->name('appes.buates');
 Route::post('/buates/simpan', [BuatesController::class, 'simpan'])->name('appes.buates.simpan');
 Route::post('/captcha/verify', [CaptchaController::class, 'verify'])->name('captcha.action');
 Route::get('/hapus-request', [CaptchaController::class, 'hapus'])->name('batal.captcha');
-Route::get('/captcha', [CaptchaController::class, 'getRandomImages']);
-Route::post('/captcha/rotate', [CaptchaController::class, 'verifikasiCaptcha'])->name('verifikasikan');
+Route::get('/get-random-images', [CaptchaController::class, 'getRandomImages']);
+Route::post('/captcha/rotate', [CaptchaController::class, 'verifikasiCaptcha'])->name('verifikasikan.captcha');
+
 Route::post('/captcha/validate', [CaptchaController::class, 'validateCaptcha'])->name('captcha.validate');

@@ -131,6 +131,21 @@ body.timess {
     transition: background-image 1s ease;
     animation: spin 1s linear infinite;
 }
+#img-rotate {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 10px; /* Jarak antar gambar */
+    margin: 15px 0;
+}
+
+.img-rotasi {
+    width: 100px; /* Sesuaikan ukuran */
+    height: 100px;
+    object-fit: cover;
+    transition: transform 0.3s ease-in-out;
+    border-radius: 8px;
+}
 .cardbg::before {
     opacity: 0.7;
     filter: blur(15px);

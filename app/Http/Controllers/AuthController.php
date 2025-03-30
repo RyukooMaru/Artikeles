@@ -37,6 +37,7 @@ class AuthController extends Controller
                 'userid' => $user->userid, 
                 'username' => $user->username,
                 'nameuse' => $user->nameuse,
+                'email' => $user->email,
                 'improfil' => $user->improfil,
             ]);
             
@@ -75,10 +76,8 @@ class AuthController extends Controller
             return redirect()->route('authes')->with('error', 'Password dan Konfirmasi Password tidak cocok!')->with('form', 'register')->withInput();
         }
         if (!session()->has('usersid')) {
-            $randominputes = str_pad(random_int(0, 999999), 6, '0', STR_PAD_LEFT);
             session([
-                'userscapt' => True,
-                'captcha_verified' => $randominputes,
+                'regis' => True,
                 'username' => $username,
                 'nameuse' => $nameuse,
                 'email' => $email,
