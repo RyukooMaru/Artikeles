@@ -81,13 +81,6 @@ document.addEventListener('DOMContentLoaded', () => {
 
 setInterval(updateBackgroundByTime, 60 * 60 * 1000);
 
-function closeCard() {
-  const locardesmini = document.getElementById('locardesmini');
-  if (locardesmini) {
-    locardesmini.style.display = 'none';
-  }
-}
-
 document.addEventListener("DOMContentLoaded", function() {
   let gifElement = document.getElementById("gifImage");
   let gifDuration = 7480;

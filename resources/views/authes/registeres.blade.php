@@ -11,6 +11,11 @@
             <label for="nameuse">Nama Artikeles</label>
             <input type="text" name="nameuse" value="{{ old('nameuse') }}" id="nameuse" placeholder="Masukkan nama artikeles" required>
           </div>
+          
+          <div class="input-group">
+            <label for="email">Email</label>
+            <input type="text" name="email" value="{{ old('email') }}" id="email" placeholder="Masukkan email" required>
+          </div>
 
           <div class="input-group">
             <label for="password-register">Password</label>
@@ -23,9 +28,9 @@
           </div>
 
           {{-- Di Register Form --}}
-          @if(session('registerError') && session('form') === 'register')
+          @if(session('error') && session('form') === 'register')
             <div class="feedback error">
-              {{ session('registerError') }}
+              {{ session('error') }}
             </div>
           @endif
           @if(session('success') && session('form') === 'register')

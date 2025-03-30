@@ -15,6 +15,7 @@ return new class extends Migration
             $table->id('userid');
             $table->string('username')->unique();
             $table->string('nameuse');
+            $table->string('email')->unique();
             $table->string('password');
             $table->text('improfil')->nullable();
             $table->timestamps();

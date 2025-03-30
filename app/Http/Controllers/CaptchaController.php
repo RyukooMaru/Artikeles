@@ -3,90 +3,60 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Facades\File;
-use App\Models\Users;
 
 class CaptchaController extends Controller
 {
 
-    public function hapus(Request $request)
+    public function getRandomImages()
     {
-        if (!session()->has('userid')) {
-            return redirect()->back()->with('message', 'Gagal menghapus akun. Userid tidak ditemukan di session.');
+        $path1 = public_path('captcha/gambar1');
+        $path2 = public_path('captcha/gambar2');
+        $files1 = File::files($path1);
+        $files2 = File::files($path2);
+        if (empty($files1) || empty($files2)) {
+            return response()->json(['error' => 'Tidak ada gambar dalam folder'], 500);
         }
-
-        $userid = session('userid');
-
-        $deleted = Users::where('userid', $userid)->delete();
-
-        if ($deleted) {
-            session()->flush(); // Hapus semua session
-            return redirect(url('/authes'))->with('message', 'Gagal registrasi, coba lagi!.')->with('form', 'register');
-        }
-    }
-
-    public function generateCaptcha()
-    {
-        // Folder tempat menyimpan gambar CAPTCHA
-        $imageDir1 = public_path('captcha/gambar1');
-        $imageDir2 = public_path('captcha/gambar2');
-
-        // Ambil gambar acak dari masing-masing folder
-        $imageFiles1 = glob($imageDir1 . '/*.{jpg,jpeg,png}', GLOB_BRACE);
-        $imageFiles2 = glob($imageDir2 . '/*.{jpg,jpeg,png}', GLOB_BRACE);
-
-        if (!$imageFiles1 || !$imageFiles2) {
-            return back()->with('error', 'Gambar CAPTCHA tidak ditemukan.');
-        }
-
-        $randomImage1 = $imageFiles1[array_rand($imageFiles1)];
-        $randomImage2 = $imageFiles2[array_rand($imageFiles2)];
-
-        // Rotasi acak untuk gambar pertama
-        $rotation1 = [45, 90, 135, 180, 225, 270, 315, 360][array_rand([45, 90, 135, 180, 225, 270, 315, 360])];
-
-        // Simpan data CAPTCHA di session
-        Session::put('captcha', [
-            'image1' => basename($randomImage1),
-            'image2' => basename($randomImage2),
+        $randomImage1 = $files1[array_rand($files1)]->getFilename();
+        $randomImage2 = $files2[array_rand($files2)]->getFilename();
+        $rotations = [0, 45, 90, 135, 180, 225, 270];
+        $rotation1 = $rotations[array_rand($rotations)];
+        do {
+            $rotation2 = $rotations[array_rand($rotations)];
+        } while ($rotation2 === $rotation1);
+        return response()->json([
+            'image1' => asset("captcha/gambar1/$randomImage1"),
+            'image2' => asset("captcha/gambar2/$randomImage2"),
             'rotation1' => $rotation1,
-            'rotation2' => 0, // Default rotasi gambar2 (user bisa ubah)
+            'rotation2' => $rotation2
         ]);
-
-        return back();
     }
 
-    public function rotateCaptcha(Request $request)
+    public function verifikasiCaptcha(Request $request)
     {
-        $currentCaptcha = Session::get('captcha');
+        $uids = session('uid');
+        $emails = session('email');
+        $rotasi1 = $request->input('rotasi1');
+        $rotasi2 = $request->input('rotasi2');
 
-        if (!$currentCaptcha) {
-            return back()->with('error', 'Silakan generate CAPTCHA terlebih dahulu.');
-        }
+        if ($rotasi1 == $rotasi2) {
+            $randominputes = str_pad(random_int(0, 999999), 6, '0', STR_PAD_LEFT);
+            Users::where('uid', $uids)->update(['captcha_verified' => $randominputes]);
+            session()->put(['captcha_verified' => $randominputes]);
 
-        // Update rotasi gambar kedua
-        $newRotation = ($currentCaptcha['rotation2'] + 45) % 360;
-        $currentCaptcha['rotation2'] = $newRotation;
-
-        Session::put('captcha', $currentCaptcha);
-
-        return back();
-    }
-
-    public function validateCaptcha()
-    {
-        $captcha = Session::get('captcha');
-
-        if (!$captcha) {
-            return back()->with('error', 'CAPTCHA tidak tersedia.');
-        }
-
-        if ($captcha['rotation1'] == $captcha['rotation2']) {
-            Session::forget('captcha');
-            return back()->with('success', 'CAPTCHA berhasil! Anda bisa melanjutkan.');
+            if (!empty($emails)) {
+                Mail::to($emails)->send(new VerifikasiEmail($randominputes));
+                return redirect()->route('authes')->with('captchaes', 'Masukkan kode verifikasi!')->with('form', 'captcha1');
+            } else {
+                return response()->json(['error' => 'Email penerima tidak ditemukan'], 500);
+            }
         } else {
-            return back()->with('error', 'Rotasi tidak sesuai! Silakan coba lagi.');
+            session()->flush();
+            return redirect()->route('authes')->with('error', 'Gagal Registrasi!')->with('form', 'register')->withInput();
         }
+    }
+    public function hapus(){
+        session()->flush();
+        return redirect()->route('authes')->with('error', 'Gagal Registrasi!')->with('form', 'register')->withInput();
     }
 }

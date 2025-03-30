@@ -33,7 +33,7 @@
   </footer>
   <script src="{{ asset('js/authes.js') }}"></script>
   <script>
-  var iconPath = "{{ asset('icouth.png') }}";
+  var iconPath = "{{ asset('icon.png') }}";
   </script>
 </body>
 
